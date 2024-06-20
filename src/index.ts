@@ -1,6 +1,7 @@
 import express from "express"
 import sequelize from "./db/database"
 import config from "config"
+import { errorHandler } from "./middleware/errorHandler"
 
 const PORT = config.get("PORT") || 3000
 
@@ -8,6 +9,7 @@ const run = () => {
   const app = express()
 
   app.use(express.json())
+  app.use(errorHandler)
 
   sequelize
     .sync()
