@@ -2,6 +2,7 @@ import express from "express"
 import sequelize from "./db/database"
 import config from "config"
 import { errorHandler } from "./middleware/errorHandler"
+import taskRoutes from "./routes/taskRoutes"
 
 const PORT = config.get("PORT") || 3000
 
@@ -9,6 +10,7 @@ const run = () => {
   const app = express()
 
   app.use(express.json())
+  app.use("/api", taskRoutes)
   app.use(errorHandler)
 
   sequelize
